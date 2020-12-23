@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class Chicken : MonoBehaviour
 {
-    GameObject target;
+    private GameObject target;
+
+    public int direction = 1;   // 치킨 이동 방향
+    public float speed = 10f;   // 치킨 속도
+    public float size = 0.5f;   // 치킨 크기
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.localScale = new Vector2(size, size);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        transform.Translate(new Vector2(direction * speed * Time.deltaTime, 0));
+        if (Input.GetMouseButtonDown(0)) // 마우스 눌렀을때 처리
         {
             CastRay();
             //Debug.Log("Click!");
