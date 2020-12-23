@@ -13,7 +13,13 @@ public class Chicken : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        size = Random.Range(0.1f, 0.5f);    // 사이즈
         transform.localScale = new Vector2(size, size);
+
+        direction = Random.Range(-1, 1);    //방향
+        if (direction >= 0) direction = 1;
+
+        speed = Random.Range(2f, 7f);    // 속도
     }
 
     // Update is called once per frame
