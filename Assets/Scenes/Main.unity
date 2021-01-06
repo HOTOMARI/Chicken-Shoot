@@ -414,6 +414,10 @@ PrefabInstance:
       value: Chicken
       objectReference: {fileID: 0}
     - target: {fileID: 5180745624031512746, guid: 60fa5d10cbe99b040a55dc035921809e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180745624031512746, guid: 60fa5d10cbe99b040a55dc035921809e, type: 3}
       propertyPath: m_TagString
       value: Chicken
       objectReference: {fileID: 0}
@@ -421,6 +425,10 @@ PrefabInstance:
       propertyPath: speed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5180745624031512749, guid: 60fa5d10cbe99b040a55dc035921809e, type: 3}
+      propertyPath: DeadSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 75469aa3415adf249a519bad75b9386c, type: 3}
     - target: {fileID: 5180745624031512750, guid: 60fa5d10cbe99b040a55dc035921809e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -464,6 +472,18 @@ PrefabInstance:
     - target: {fileID: 5180745624031512750, guid: 60fa5d10cbe99b040a55dc035921809e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180745624031512751, guid: 60fa5d10cbe99b040a55dc035921809e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.24207896
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180745624031512751, guid: 60fa5d10cbe99b040a55dc035921809e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9622642
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180745624031512751, guid: 60fa5d10cbe99b040a55dc035921809e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.32786167
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60fa5d10cbe99b040a55dc035921809e, type: 3}

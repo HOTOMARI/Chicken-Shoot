@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Chicken : MonoBehaviour
 {
-    private GameObject target;
+    private SpriteRenderer spriteRenderer;
+    private Color color;
+
+    public bool live = true;
 
     public int direction = 1;   // 치킨 이동 방향
     public float speed = 10f;   // 치킨 속도
@@ -13,6 +16,9 @@ public class Chicken : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        color = spriteRenderer.color;
+
         size = Random.Range(0.1f, 0.5f);    // 사이즈
         transform.localScale = new Vector2(size, size);
 
@@ -25,20 +31,34 @@ public class Chicken : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(new Vector2(direction * speed * Time.deltaTime, 0));
+        if (live)
+        {
+            transform.Translate(new Vector2(direction * speed * Time.deltaTime, 0));
+        }
+        else
+        {
+            color.a -= 1f * Time.deltaTime;
+            spriteRenderer.color = color;
+        }
         
     }
 
-    void CastRay()  // 레이를 쏴서 유닛 히트처리
+    void ChangeColor(ref Color color, int r, int g, int b)
     {
-        target = null;
+        color.r = r;
+        color.g = g;
+        color.b = b;
+    }
 
-        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0f);
-
-        if(hit.collider != null)    // 히트되었다면 실행
-        {
-            target = hit.collider.gameObject;   // 히트 된 게임 오브젝트를 타겟으로 지정
-        }
+    public void KillChicken()
+    {
+        live = false;
+        speed = 0;
+        //spriteRenderer.sprite = DeadSprite;
+        //color.r = 0;
+        //color.b = 0;
+        ChangeColor(ref color, 0, 255, 0);
+        spriteRenderer.color = color;
+        Object.Destroy(gameObject, 1);
     }
 }

@@ -20,9 +20,11 @@ public class Gun : MonoBehaviour
             CastRay();
             if (target != null)
             {
-                if (target.tag == "Chicken") // 타겟이 본인이라면 실행
+                if (target.tag == "Chicken") // 타겟이 치킨이라면 실행
                 {
                     Debug.Log("Chicken!");
+                    target.GetComponent<Chicken>().KillChicken();
+                    
                 }
                 else
                 {

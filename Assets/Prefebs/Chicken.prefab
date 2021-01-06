@@ -112,6 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d27578f4d6e3e4d96812ba0b9788bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  live: 1
   direction: -1
   speed: 2
   size: 0.5
+  DeadSprite: {fileID: 21300000, guid: 75469aa3415adf249a519bad75b9386c, type: 3}
