@@ -54,9 +54,6 @@ public class Chicken : MonoBehaviour
     {
         live = false;
         speed = 0;
-        //spriteRenderer.sprite = DeadSprite;
-        //color.r = 0;
-        //color.b = 0;
         ChangeColor(ref color, 0, 255, 0);
         spriteRenderer.color = color;
         Object.Destroy(gameObject, 1);
