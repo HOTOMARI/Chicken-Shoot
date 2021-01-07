@@ -1,37 +1,80 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
     private GameObject target;
+    private int bullet;
+    private int score;
+
+    float timer;
+
+    public float reloadtime;
+    public bool reload;
+    public Text bulletText;
+    public Text scoreText;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        bullet = 8;
+        score = 0;
+
+        timer = 0;
+        reloadtime = 2.0f;
+        reload = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // 마우스 눌렀을때 처리
+        if (reload)
         {
-            CastRay();
-            if (target != null)
+            timer += 2.0f * Time.deltaTime;
+            if (timer > 2.0f)
             {
-                if (target.tag == "Chicken") // 타겟이 치킨이라면 실행
-                {
-                    Debug.Log("Chicken!");
-                    target.GetComponent<Chicken>().KillChicken();
-                    
-                }
-                else
-                {
-                    Debug.Log("Click!");
-                }
+                timer = 0;
+                reload = false;
             }
         }
+        else
+        {
+            if (Input.GetMouseButtonDown(0)) // 마우스 눌렀을때 처리
+            {
+                if (bullet > 0)
+                {
+                    CastRay();
+                    if (target != null)
+                    {
+                        if (target.tag == "Chicken") // 타겟이 치킨이라면 실행
+                        {
+                            if (target.GetComponent<Chicken>().GetChickenAlive())
+                            {
+                                Debug.Log("Chicken!");
+                                target.GetComponent<Chicken>().KillChicken();
+                                score++;
+                                RefreshScore();
+                            }
+
+                        }
+                        else
+                        {
+                            Debug.Log("Click!");
+                        }
+                    }
+                    ShotBullet();
+                }
+
+            }
+
+            if (Input.GetKeyDown(KeyCode.R)) //재장전 처리
+            {
+                Debug.Log("reloading");
+                ReloadBullet();
+            }        
+        }       
     }
     void CastRay()  // 레이를 쏴서 유닛 히트처리
     {
@@ -44,6 +87,29 @@ public class Gun : MonoBehaviour
         {
             target = hit.collider.gameObject;   // 히트 된 게임 오브젝트를 타겟으로 지정
         }
+    }
+
+    void ShotBullet()
+    {
+        bullet--;
+        RefreshBullet();
+    }
+
+    void ReloadBullet()
+    {
+        reload = true;
+        bullet = 8;
+        RefreshBullet();
+    }
+
+    void RefreshBullet()
+    {
+        bulletText.text = "X " + bullet;
+    }
+
+    void RefreshScore()
+    {
+        scoreText.text = score.ToString();
     }
 }
 

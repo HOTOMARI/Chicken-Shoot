@@ -25,7 +25,7 @@ public class Chicken : MonoBehaviour
         direction = Random.Range(-1, 1);    //방향
         if (direction >= 0) direction = 1;
 
-        speed = Random.Range(2f, 7f);    // 속도
+        speed = Random.Range(2.0f, 7.0f);    // 속도
     }
 
     // Update is called once per frame
@@ -33,9 +33,13 @@ public class Chicken : MonoBehaviour
     {
         if (live)
         {
-            transform.Translate(new Vector2(direction * speed * Time.deltaTime, 0));
+            transform.Translate(new Vector2(direction * speed * Time.deltaTime, 0)); // 치킨 이동
+            if (transform.position.x < -25.0f || transform.position.x > 25.0f) // 범위밖으로 나가면 삭제 
+            {
+                RemoveChicken();
+            }
         }
-        else
+        else // 죽으면 색상 변경
         {
             color.a -= 1f * Time.deltaTime;
             spriteRenderer.color = color;
@@ -57,5 +61,15 @@ public class Chicken : MonoBehaviour
         ChangeColor(ref color, 0, 255, 0);
         spriteRenderer.color = color;
         Object.Destroy(gameObject, 1);
+    }
+
+    public bool GetChickenAlive()
+    {
+        return live;
+    }
+
+    void RemoveChicken()
+    {
+        Object.Destroy(gameObject);
     }
 }
