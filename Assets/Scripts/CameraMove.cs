@@ -15,7 +15,10 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveCamera();
+        if (false == GameObject.FindGameObjectWithTag("GameMannager").GetComponent<GameMannager>().GetPlayerLive())
+        {
+            moveCamera();
+        }
     }
 
     void moveCamera()
