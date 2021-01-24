@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMannager : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class GameMannager : MonoBehaviour
         if (GetPlayerLive() == false)
         {
             GameOver();
+            if (Input.anyKeyDown)
+            {
+                SceneManager.LoadScene("Title");
+            }
         }
     }
 
