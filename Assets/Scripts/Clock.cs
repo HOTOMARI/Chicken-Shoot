@@ -11,7 +11,7 @@ public class Clock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        remainTime = 120f;
+        remainTime = 5f;
     }
 
     // Update is called once per frame
@@ -21,6 +21,11 @@ public class Clock : MonoBehaviour
         {
             remainTime -= Time.deltaTime;
             UpdateText();
+        }
+        else
+        {
+            remainTime = 0;
+            GameObject.FindGameObjectWithTag("GameMannager").GetComponent<GameMannager>().ChangePlayerLive();
         }
     }
 

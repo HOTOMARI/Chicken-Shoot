@@ -16,7 +16,10 @@ public class ChickenSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (false == GameObject.FindGameObjectWithTag("GameMannager").GetComponent<GameMannager>().GetPlayerLive())
+        {
+            CancelInvoke("SpawnObj");
+        }
     }
 
     void SpawnObj()

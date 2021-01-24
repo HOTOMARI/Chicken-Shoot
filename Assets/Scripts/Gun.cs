@@ -30,51 +30,56 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (reload)
+        // 게임이 끝나지 않았을경우 실행합니다.
+        if (GameObject.FindGameObjectWithTag("GameMannager").GetComponent<GameMannager>().GetPlayerLive())
         {
-            timer += 2.0f * Time.deltaTime;
-            if (timer > 2.0f)
+            if (reload)
             {
-                timer = 0;
-                reload = false;
-            }
-        }
-        else
-        {
-            if (Input.GetMouseButtonDown(0)) // 마우스 눌렀을때 처리
-            {
-                if (bullet > 0)
+                timer += 2.0f * Time.deltaTime;
+                if (timer > 2.0f)
                 {
-                    CastRay();
-                    if (target != null)
+                    timer = 0;
+                    reload = false;
+                }
+            }
+            else
+            {
+                if (Input.GetMouseButtonDown(0)) // 마우스 눌렀을때 처리
+                {
+                    Debug.Log("Click!");
+                    if (bullet > 0)
                     {
-                        if (target.tag == "Chicken") // 타겟이 치킨이라면 실행
+                        CastRay();
+                        if (target != null)
                         {
-                            if (target.GetComponent<Chicken>().GetChickenAlive())
+                            if (target.tag == "Chicken") // 타겟이 치킨이라면 실행
                             {
-                                Debug.Log("Chicken!");
-                                target.GetComponent<Chicken>().KillChicken();
-                                score++;
-                                RefreshScore();
-                            }
+                                if (target.GetComponent<Chicken>().GetChickenAlive())
+                                {
+                                    Debug.Log("Chicken!");
+                                    target.GetComponent<Chicken>().KillChicken();
+                                    score++;
+                                    RefreshScore();
+                                }
 
+                            }
+                            else
+                            {
+                               // Debug.Log("Click!");
+                            }
                         }
-                        else
-                        {
-                            Debug.Log("Click!");
-                        }
+                        ShotBullet();
                     }
-                    ShotBullet();
+
                 }
 
+                if (Input.GetKeyDown(KeyCode.R)) //재장전 처리
+                {
+                    Debug.Log("reloading");
+                    ReloadBullet();
+                }
             }
-
-            if (Input.GetKeyDown(KeyCode.R)) //재장전 처리
-            {
-                Debug.Log("reloading");
-                ReloadBullet();
-            }        
-        }       
+        }
     }
     void CastRay()  // 레이를 쏴서 유닛 히트처리
     {
