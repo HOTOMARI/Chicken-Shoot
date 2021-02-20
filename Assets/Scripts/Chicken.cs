@@ -24,6 +24,7 @@ public class Chicken : MonoBehaviour
 
         direction = Random.Range(-1, 1);    //방향
         if (direction >= 0) direction = 1;
+        if (direction == 1) transform.position = new Vector2(-24, transform.position.y);
 
         speed = Random.Range(2.0f, 7.0f);    // 속도
     }

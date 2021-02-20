@@ -16,6 +16,9 @@ public class Gun : MonoBehaviour
     public Text bulletText;
     public Text scoreText;
 
+    public AudioSource shotSound;
+    public AudioSource reloadSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,6 +100,7 @@ public class Gun : MonoBehaviour
     void ShotBullet()
     {
         bullet--;
+        shotSound.Play();
         RefreshBullet();
     }
 
@@ -104,6 +108,7 @@ public class Gun : MonoBehaviour
     {
         reload = true;
         bullet = 8;
+        reloadSound.Play();
         RefreshBullet();
     }
 

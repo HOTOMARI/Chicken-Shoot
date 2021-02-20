@@ -25,6 +25,6 @@ public class ChickenSpawner : MonoBehaviour
     void SpawnObj()
     {
         float randomY = Random.Range(-5f, 5f);
-        Instantiate(chicken, new Vector2(0, randomY),Quaternion.identity);
+        Instantiate(chicken, new Vector2(24f, randomY),Quaternion.identity);
     }
 }
