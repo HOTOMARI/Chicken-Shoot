@@ -49,7 +49,7 @@ public class Gun : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0)) // 마우스 눌렀을때 처리
                 {
-                    Debug.Log("Click!");
+                    //Debug.Log("Click!");
                     if (bullet > 0)
                     {
                         CastRay();
@@ -59,7 +59,7 @@ public class Gun : MonoBehaviour
                             {
                                 if (target.GetComponent<Chicken>().GetChickenAlive())
                                 {
-                                    Debug.Log("Chicken!");
+                                    //Debug.Log("Chicken!");
                                     target.GetComponent<Chicken>().KillChicken();
                                     score++;
                                     RefreshScore();
